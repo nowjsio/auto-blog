@@ -16,6 +16,8 @@ const config = {
   tistoryAppID: required('TISTORY_APP_ID'),
   tistorySecretKey: required('TISTORY_SECRET_KEY'),
   tistoryAccessToken: required('TISTORY_ACCESS_TOKEN'),
+  tistoryBlogName: required('TISTORY_BLOG_NAME'),
+  tistoryContentPWD: required('TISTORY_CONTENT_PWD'),
 };
 
 export default config;

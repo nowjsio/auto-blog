@@ -7,14 +7,14 @@ import logger from '../../log/logger.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const tistoryAccessToken = config.tistoryAccessToken;
+const { tistoryAccessToken, tistoryBlogName, tistoryContentPWD } = config;
 logger.debug(tistoryAccessToken);
 const tistoryRequest = axios.create({
   baseURL: ` https://www.tistory.com/apis/post`,
   params: {
     access_token: tistoryAccessToken,
-    blogName: 'now-io',
-    password: '1234',
+    blogName: tistoryBlogName,
+    password: tistoryContentPWD,
   },
   headers: { 'Content-Type': 'application/json' },
   // proxy: {
