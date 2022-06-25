@@ -7,33 +7,30 @@ import logger from '../../log/logger.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const { tistoryAccessToken, tistorySafePWD } = config.tistoryAccessToken;
+const tistoryAccessToken = config.tistoryAccessToken;
 logger.debug(tistoryAccessToken);
 const tistoryRequest = axios.create({
   baseURL: ` https://www.tistory.com/apis/post`,
-  data: {
+  params: {
     access_token: tistoryAccessToken,
     blogName: 'now-io',
     password: '1234',
   },
-  proxy: {
-    host: '127.0.0.1',
-    port: 8888,
-  },
+  headers: { 'Content-Type': 'application/json' },
+  // proxy: {
+  //   host: '127.0.0.1',
+  //   port: 8888,
+  // },
 });
 export default class TistoryBot {
   constructor() {}
 
   async upload(title, content) {
     try {
-      const request = await tistoryRequest.post(
-        'write',
-        {
-          title,
-          content,
-        },
-        { headers: { 'Content-Type': 'application/json' } },
-      );
+      const request = await tistoryRequest.post('write', {
+        title,
+        content,
+      });
       const requestStatus = request.status;
       if (requestStatus >= 200 && requestStatus < 300) {
         logger.info('[tistory bot] upload content');
